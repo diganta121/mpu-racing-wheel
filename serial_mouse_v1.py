@@ -35,6 +35,22 @@ def data_sp(s):
             return
     return a
 
+def calibrate(temp,x):
+    if temp == 0:
+        d1['x_off'] = x - prev
+        prev.clear()
+        temp = -1
+        d1['correct_state'] = False
+        print(d1)
+    elif temp == -1:
+        prev = x
+        temp = 10
+        time.sleep(1)
+        return True
+    else:
+        temp -= 1
+        return True
+
 dist = 0.1
 
 def mouse_x3(x_val,x1,x2,y1,y2):
@@ -43,8 +59,8 @@ def mouse_x3(x_val,x1,x2,y1,y2):
     return y1 + (x_val - x1) * (y2 - y1) / (x2 - x1)
 
 
-def mov_mouse(x,y):
-    pyautogui.moveTo(x=x,y=y,duration=0.1)
+def mov_mouse(x):
+    pyautogui.moveTo(x=x,duration=0.1)
 
 
 def deNoise(x1,x2,y1,y2):
@@ -87,35 +103,19 @@ def main():
                 curr = data_sp(data)
                 
                 x_angle = (curr[0])/1.2
-                y_angle = (curr[1])/1.2
                 # print(x_angle,y_angle)
                 if d1['precise']:
                     x_angle /= 2
-                    y_angle /= 2
                 if d1['invert_x']:
                     x_angle *= -1
-                    #y_angle *= -1
                 x = (mouse_x3(x_angle,65,-60,0,1920)) - d1['x_off']
-                y = (mouse_x3(y_angle,40,-40,0,1080)) - d1['y_off']
                 if d1['correct_state']:
-                    if temp == 0:
-                        d1['x_off'] = x - prev[0]
-                        d1['y_off'] = y - prev[1]
-                        prev.clear()
-                        temp = -1
-                        d1['correct_state'] = False
-                        print(d1)
-                    elif temp == -1:
-                        prev = [x, y]
-                        temp = 10
-                        time.sleep(1)
-                        continue
-                    else:
-                        temp -= 1
+                    c = calibrate(temp,x)
+                    if c:
                         continue
                 #print(f"{x:.2f} {y:.2f}")
                 # s2 = time.time_ns()
-                mov_mouse(x,y)
+                mov_mouse(x)
                 # s3 = time.time_ns()
                 # print((s2-s1)/1000000,(s3-s2)/1000000,(s3-s1)/1000000)
                 #print(time.perf_counter())
