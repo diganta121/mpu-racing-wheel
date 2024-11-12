@@ -10,27 +10,19 @@ var previous_speed := linear_velocity.length()
 var _steer_target := 0.0
 
 @onready var desired_engine_pitch: float = $EngineSound.pitch_scale
-const mmin = 100
+const mmin = 40
 const mmax = 700
 const mmid = 1080/2
-func Mouse_steering():
-	var mpos = get_viewport().get_mouse_position().x
-	var diff = mmid - mpos
-	print(diff)
-	if diff < mmin:
-		return -1
-	elif  diff > mmax:#left
-		return 1
-	else:
-		return 0
-	#print(diff)
 
-const d = [[1,-1],[-mmax,mmax]]
+func mx3(x_val,x1,x2,y1,y2):
+	# linear interpolation
+	return y1 + (x_val - x1) * (y2 - y1) / (x2 - x1)
 func Mouse_steeringV2():
 	var diff :float = mmid - get_viewport().get_mouse_position().x
 	print(diff)
-    var op :float = d[0][1] + (x - d[0][0]) * ((d[1][1] - d[0][1])/(d[1][0] - d[0][0]))
+	var op :float = mx3(diff,-mmax,mmax,-1,1)
 	if abs(diff) > mmin:
+		print(op)
 		return op
 	else:
 		return 0
@@ -39,7 +31,7 @@ func Mouse_steeringV2():
 
 func _physics_process(delta: float) -> void:
 	# =======================================================
-	_steer_target = Mouse_steering() #Input.get_axis(&"turn_right", &"turn_left")
+	_steer_target = Mouse_steeringV2() #Input.get_axis(&"turn_right", &"turn_left")
 	_steer_target *= STEER_LIMIT
 	#print(_steer_target)
 	# ==========

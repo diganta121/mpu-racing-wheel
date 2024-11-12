@@ -6,6 +6,9 @@ MPU9250_WE myMPU9250 = MPU9250_WE(MPU9250_ADDR);
 void setup() {
   Serial.begin(115200);
   Wire.begin();
+  pinMode(19,INPUT);
+  pinMode(26,INPUT);
+
   if(!myMPU9250.init()){
     Serial.println("MPU9250 does not respond");
   }
@@ -72,30 +75,56 @@ void setup() {
 float curr;
 float prev = 0;
 unsigned long tim = millis();
+int accelB = false;
+int brakeB = false;
+int ti = 5;
+const int max_ti = 5;
+int buttons = 0;
+
 void loop() {
-
-
   // TODO accelerate , break button 
-
-
 
   xyzFloat angles = myMPU9250.getAngles();
   /* This method provides quite precise values for x/y 
    angles up 60°. */
-  curr = angles.x;
+  curr = angles.y;
   float diff = curr-prev;
   /* Pitch and roll consider all axes for calculation. According to my experience
   it provides more reliable results at higher angles (>60°) */
-  float pitch = myMPU9250.getPitch();
+  float roll = myMPU9250.getRoll();
+
+  if (ti == max_ti){
+    accelB = !digitalRead(19);
+    brakeB = !digitalRead(26);
+    if (accelB && brakeB){
+      buttons = 3;
+    }
+    else if (accelB){
+      buttons = 1;
+    }
+    else if (brakeB){
+      buttons = 2;
+    }
+    else{
+      buttons = 0;
+    }
+    ti--;
+  }
+  else if(ti == 0){
+    ti = max_ti;
+  }
+  else{
+    ti--;
+  }
   Serial.print(curr);
   Serial.print(" ");
-  Serial.print(pitch);
+  Serial.print(roll);
   Serial.print(" ");
-  Serial.println(diff);
+  Serial.print(diff);
+  Serial.print(" ");
+  Serial.println(buttons);
   // tim = millis();
   // Serial.println(tim);
   prev = curr;
   delay(80);
-
-
 }

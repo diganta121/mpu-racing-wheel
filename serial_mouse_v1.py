@@ -9,7 +9,7 @@ baudrate = 115200
 d1 = {'x_off':0,
         'correct_state':False,
         'precise':False,
-        'invert_x':True,
+        'invert_x':False,
         'enbl':True,
         'loop':True
         }
@@ -62,6 +62,16 @@ def mouse_x3(x_val,x1,x2,y1,y2):
 def mov_mouse(x):
     pyautogui.moveTo(x=x,duration=0.1)
 
+
+def mouse_click(b):
+    if b == '3':
+        pyautogui.hold(['w','s'])
+    elif b == '1':
+        pyautogui.hold('w')
+    elif b == '2':
+        pyautogui.hold('s')
+
+        
 
 def deNoise(x1,x2,y1,y2):
     # TODO de noising of input
@@ -116,10 +126,11 @@ def main():
                 #print(f"{x:.2f} {y:.2f}")
                 # s2 = time.time_ns()
                 mov_mouse(x)
+                mouse_click(curr[-1])
                 # s3 = time.time_ns()
                 # print((s2-s1)/1000000,(s3-s2)/1000000,(s3-s1)/1000000)
                 #print(time.perf_counter())
-                prev = curr
+                prev = curr.copy()
         except:
             print('err')
             #print(time.time_ns()-s1)
