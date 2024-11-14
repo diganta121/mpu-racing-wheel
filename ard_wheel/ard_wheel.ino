@@ -77,8 +77,8 @@ float prev = 0;
 unsigned long tim = millis();
 int accelB = false;
 int brakeB = false;
-int ti = 5;
-const int max_ti = 5;
+int ti = 3;
+const int max_ti = 3;
 int buttons = 0;
 
 void loop() {
@@ -94,8 +94,8 @@ void loop() {
   float roll = myMPU9250.getRoll();
 
   if (ti == max_ti){
-    accelB = !digitalRead(19);
-    brakeB = !digitalRead(26);
+    accelB = digitalRead(19);
+    brakeB = digitalRead(26);
     if (accelB && brakeB){
       buttons = 3;
     }

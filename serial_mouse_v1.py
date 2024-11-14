@@ -64,12 +64,13 @@ def mov_mouse(x):
 
 
 def mouse_click(b):
-    if b == '3':
-        pyautogui.hold(['w','s'])
-    elif b == '1':
-        pyautogui.hold('w')
-    elif b == '2':
-        pyautogui.hold('s')
+    if b == 0:
+        pyautogui.press('w')
+        pyautogui.press('s')
+    elif b == 1:
+        pyautogui.press('w')
+    elif b == 2:
+        pyautogui.press('s')
 
         
 
@@ -126,6 +127,7 @@ def main():
                 #print(f"{x:.2f} {y:.2f}")
                 # s2 = time.time_ns()
                 mov_mouse(x)
+                print(curr)
                 mouse_click(curr[-1])
                 # s3 = time.time_ns()
                 # print((s2-s1)/1000000,(s3-s2)/1000000,(s3-s1)/1000000)
