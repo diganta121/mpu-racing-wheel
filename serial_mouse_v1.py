@@ -2,7 +2,6 @@ import pyautogui
 import serial
 import keyboard
 import time
-import threading
 
 comport = 'COM5'
 baudrate = 115200
@@ -63,16 +62,20 @@ def mov_mouse(x):
     pyautogui.moveTo(x=x,duration=0.1)
 
 
-def mouse_click(b):
-    if b == 0:
-        pyautogui.press('w')
-        pyautogui.press('s')
-    elif b == 1:
-        pyautogui.press('w')
-    elif b == 2:
-        pyautogui.press('s')
-
-        
+def mouse_click(b,pr):
+    if b != pr:
+        print("b:",b)
+        if b == 0:
+            pyautogui.moveTo(y=100,duration=0.01)
+        elif b == 1:
+            pyautogui.moveTo(y=900,duration=0.01)
+        elif b == 2:
+            pyautogui.moveTo(y=100,duration=0.01)
+        else:
+            pyautogui.moveTo(y=1920/2 -100,duration=0.01)
+        pr = b
+    else:
+        pass
 
 def deNoise(x1,x2,y1,y2):
     # TODO de noising of input
@@ -99,6 +102,7 @@ def main():
     curr = []
     prev = []
     temp = -1
+    clickpr = 0
     ser = serial.Serial(comport, baudrate,timeout=0.2)         
     # 1/timeout is the frequency at which the port is read 
     keyboard.add_hotkey('`',disable)
@@ -128,7 +132,7 @@ def main():
                 # s2 = time.time_ns()
                 mov_mouse(x)
                 print(curr)
-                mouse_click(curr[-1])
+                mouse_click(curr[-1],clickpr)
                 # s3 = time.time_ns()
                 # print((s2-s1)/1000000,(s3-s2)/1000000,(s3-s1)/1000000)
                 #print(time.perf_counter())

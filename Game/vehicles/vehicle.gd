@@ -17,17 +17,25 @@ const mmid = 1080/2
 func mx3(x_val,x1,x2,y1,y2):
 	# linear interpolation
 	return y1 + (x_val - x1) * (y2 - y1) / (x2 - x1)
+
+func Mouse_accelV1():
+	var diff :float = 1920 - get_viewport().get_mouse_position().y
+	var op :float = mx3(diff,-mmax,mmax,-1,1)
+	if diff > 100:
+		Input.action_press("accelerate")
+	elif diff < 100 :
+		Input.action_press("accelerate")
+	else:
+		return 0
+
 func Mouse_steeringV2():
 	var diff :float = mmid - get_viewport().get_mouse_position().x
-	print(diff)
 	var op :float = mx3(diff,-mmax,mmax,-1,1)
 	if abs(diff) > mmin:
 		print(op)
 		return op
 	else:
 		return 0
-	
-
 
 func _physics_process(delta: float) -> void:
 	# =======================================================

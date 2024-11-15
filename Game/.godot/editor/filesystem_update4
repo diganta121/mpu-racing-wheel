@@ -1,2 +1,3 @@
-res://car_select/car_select.tscn
 res://vehicles/car_base.tscn
+res://vehicles/vehicle.gd
+res://car_select/car_select.tscn
