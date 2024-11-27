@@ -41,20 +41,6 @@ def data_sp(s):
     return a
 
 
-def get_data():
-    global data
-    ser = serial.Serial(comport, baudrate, timeout=0.2)
-    while True:
-        tdata = ser.readline().decode().strip()
-        if tdata and d1["enbl"]:
-            try:
-                tdata = [float(x) for x in tdata.split()]
-                data = tdata
-                # print(tdata)
-            except:
-                print(tdata)
-
-
 def calibrate(temp, x):
     if temp == 0:
         d1["x_off"] = x - prev
@@ -129,6 +115,7 @@ def main():
     prev = []
     temp = -1
     clickpr = 0
+    ypos = 1920 // 2
     ser = serial.Serial(comport, baudrate, timeout=0.2)
     # 1/timeout is the frequency at which the port is read
     keyboard.add_hotkey("`", disable)
@@ -156,7 +143,7 @@ def main():
                         continue
                 # print(f"{x:.2f} {y:.2f}")
                 # s2 = time.time_ns()
-                mov_mouse(x)
+                mov_mouse(x, yz)
                 print(curr)
                 mouse_click(curr[-1], clickpr)
                 # s3 = time.time_ns()

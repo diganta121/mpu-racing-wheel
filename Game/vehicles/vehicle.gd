@@ -19,20 +19,20 @@ func mx3(x_val,x1,x2,y1,y2):
 	return y1 + (x_val - x1) * (y2 - y1) / (x2 - x1)
 
 func Mouse_accelV1():
-	var diff :float = 1920 - get_viewport().get_mouse_position().y
+	print(get_viewport().get_mouse_position().y)
+	var diff :float = get_viewport().get_mouse_position().y
 	var op :float = mx3(diff,-mmax,mmax,-1,1)
+	#print(diff)
 	if diff > 100:
 		Input.action_press("accelerate")
 	elif diff < 100 :
 		Input.action_press("accelerate")
-	else:
-		return 0
 
 func Mouse_steeringV2():
 	var diff :float = mmid - get_viewport().get_mouse_position().x
 	var op :float = mx3(diff,-mmax,mmax,-1,1)
 	if abs(diff) > mmin:
-		print(op)
+		#print(op)
 		return op
 	else:
 		return 0
@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	_steer_target *= STEER_LIMIT
 	#print(_steer_target)
 	# ==========
-	
+	#Mouse_accelV1()
 	#_steer_target *= STEER_LIMIT
 	# Engine sound simulation (not realistic, as this car script has no notion of gear or engine RPM).
 	desired_engine_pitch = 0.05 + linear_velocity.length() / (engine_force_value * 0.5)
