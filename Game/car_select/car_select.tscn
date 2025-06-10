@@ -73,7 +73,9 @@ theme_override_constants/outline_size = 38
 theme_override_constants/shadow_outline_size = 38
 theme_override_fonts/font = SubResource("FontVariation_hqcvw")
 theme_override_font_sizes/font_size = 64
-text = "Truck Town"
+text = "SIM"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="HBoxContainer/MiniVan" to="." method="_on_mini_van_pressed"]
 [connection signal="pressed" from="HBoxContainer/TrailerTruck" to="." method="_on_trailer_truck_pressed"]

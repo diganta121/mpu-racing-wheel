@@ -1,11 +1,11 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1731665382
+::res://::1747500827
 icon.webp::CompressedTexture2D::3626017087650301524::1731323511::1731331218::1::::<><>::
 README.md::TextFile::-1::1731323511::0::1::::<><>::
 spedometer.gd::GDScript::-1::1731323511::0::1::::<>Button<>::
-::res://car_select/::1731664502
+::res://car_select/::1731665536
 car_select.gd::GDScript::-1::1731323511::0::1::::<>Control<>::
-car_select.tscn::PackedScene::5519083593120862163::1731664502::0::1::::<><>::res://car_select/car_select.gd<>uid://bh7b4n4lg1uqt::::res://car_select/choose_van.png<>uid://hvkcmpdq1t0k::::res://car_select/choose_trailer.png<>uid://de7itkxhl0u28::::res://car_select/choose_tow.png
+car_select.tscn::PackedScene::5519083593120862163::1731665536::0::1::::<><>::res://car_select/car_select.gd<>uid://bh7b4n4lg1uqt::::res://car_select/choose_van.png<>uid://hvkcmpdq1t0k::::res://car_select/choose_trailer.png<>uid://de7itkxhl0u28::::res://car_select/choose_tow.png
 choose_tow.png::CompressedTexture2D::7506597740885427615::1731323511::1731331218::1::::<><>::
 choose_trailer.png::CompressedTexture2D::535285233427956760::1731323511::1731331218::1::::<><>::
 choose_van.png::CompressedTexture2D::2943915910416982227::1731323511::1731331218::1::::<><>::
@@ -17,9 +17,9 @@ cement.tres::StandardMaterial3D::2616088146665799013::1731323511::0::1::::<><>::
 cement.webp::CompressedTexture2D::7906065206908765244::1731323511::1731331218::1::::<><>::
 grass.tres::StandardMaterial3D::7073446329274880064::1731323511::0::1::::<><>::uid://b2g4dq0w72e68::::res://town/materials/grass.webp
 grass.webp::CompressedTexture2D::4295672758653397927::1731323511::1731331219::1::::<><>::
-::res://vehicles/::1731665153
+::res://vehicles/::1731665536
 blob_shadow.png::CompressedTexture2D::3061404969606535202::1731323511::1731331218::1::::<><>::
-car_base.tscn::PackedScene::6639054641309143335::1731664502::0::1::::<><>::res://vehicles/vehicle.gd<>uid://d4ostmqwgytk::::res://vehicles/particle_smoke.png<>uid://bqrwin8ccgptt::::res://vehicles/meshes/wheel.res<>uid://b2xi556mwp7ue::::res://vehicles/meshes/minivan.res<>res://vehicles/follow_camera.gd<>uid://cb7wvsd6vygd3::::res://vehicles/engine.wav<>uid://sy2li7u35867::::res://vehicles/impact_1.wav<>uid://bf0h7s81yr8nj::::res://vehicles/impact_2.wav<>uid://sun2n8a4xapl::::res://vehicles/impact_3.wav<>uid://dpbayeeufya21::::res://vehicles/impact_4.wav<>uid://bju75l2w3r7vq::::res://vehicles/blob_shadow.png
+car_base.tscn::PackedScene::6639054641309143335::1731665536::0::1::::<><>::res://vehicles/vehicle.gd<>uid://d4ostmqwgytk::::res://vehicles/particle_smoke.png<>uid://bqrwin8ccgptt::::res://vehicles/meshes/wheel.res<>uid://b2xi556mwp7ue::::res://vehicles/meshes/minivan.res<>res://vehicles/follow_camera.gd<>uid://cb7wvsd6vygd3::::res://vehicles/engine.wav<>uid://sy2li7u35867::::res://vehicles/impact_1.wav<>uid://bf0h7s81yr8nj::::res://vehicles/impact_2.wav<>uid://sun2n8a4xapl::::res://vehicles/impact_3.wav<>uid://dpbayeeufya21::::res://vehicles/impact_4.wav<>uid://bju75l2w3r7vq::::res://vehicles/blob_shadow.png
 engine.wav::AudioStreamWAV::4910464526159239754::1731323511::1731331219::1::::<><>::
 follow_camera.gd::GDScript::-1::1731323511::0::1::::<>Camera3D<>::
 impact_1.wav::AudioStreamWAV::1314603724687552626::1731323511::1731331219::1::::<><>::
